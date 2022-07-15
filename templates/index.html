@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Find a Phone</title>
+ <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Get mars data</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Update data</a></p>
+    </div>
+
+    <!-- Phone Listings -->
+    <div class="row" id="craiglist-listings">
+      <div class="col-md-12">
+       <!-- <h4 class="heading"></h4> -->
+          {% for i in mars_information.latest_news %}
+          <h4>{{ i.titles}}</h4>
+              <p>{{ i.teaser}}</p>
+            {% endfor %}
+        <small></small>
+      </div>
+    </div>
+
+   <div class="container-lg my-5">
+        <h2>Mars Facts</h2>
+
+        <div class="row">
+               {{mars_information.mars_table|safe}}
+        </div>
+          <div class = "col">
+               <img class="card-img-top img-fluid w-lg-50 w-md-25 w-75" src="{{mars_information.featured_image}}"
+                    alt="Card image cap" class="center-block">
+          </div>
+
+
+    </div>
+
+
+  <!-- Begin the for loop to retrieve hemisphere image urls and titles -->
+  <div class="row">
+    {% for image in mars_information.planet_images %}
+        <div class="col-6">
+    <div class="card p-4">
+    <h3>{{ image.title }}</h3>
+      <img class="card-img-top img-fluid w-lg-50 w-md-25 w-75" src="{{image.img_url}}" alt="Card image cap" class="center-block">
+      <div class="card-body px-0 pb-0">
+       <!-- <p class="card-text"> <b></b></p> -->
+      </div>
+    </div>
+        </div>
+  {% endfor %}
+  </div>
+
+</div>
+ <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
+
